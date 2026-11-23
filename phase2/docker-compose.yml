@@ -1,0 +1,21 @@
+services:
+#build and image if donot have dockerfile
+  backend:
+    build: ./backend
+    environment:
+      - PORT=7000
+    env_file:
+      - ./backend/.env
+    ports:
+      - 8000:7000
+  frontend:
+    build: ./frontend
+    ports:
+      - 5173:5173
+#docker compose up:on all containers
+#docker compose up backend:only backend container
+#docker compose down:stop all containers and remove containers, networks, volumes, and images created by up
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
